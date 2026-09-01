@@ -246,7 +246,8 @@
             "%c\n" +
             "You weren't supposed to find this.\n" +
             "But since you're here...\n\n" +
-            "Respect. 🤝",
+            "Respect. 🤝\n\n",
+            "Easter Egg: Type 'kurt' anywhere in the website for secret message!",
             styles.normal
         );
 
