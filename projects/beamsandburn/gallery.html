@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gallery | Beams & Burn</title>
+<meta name="description" content="Recent laser engraving work from Beams & Burn  signage, plaques, personalized gifts, and keepsakes, straight from the workshop." />
+<link rel="icon" type="image/png" href="images/favicon-32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="images/favicon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/navbar.css" />
+<link rel="stylesheet" href="css/animate.css" />
+<link rel="stylesheet" media="screen and (max-width: 480px)" href="css/style480px.css" />
+<noscript><style>[data-reveal]{opacity:1 !important;transform:none !important;}</style></noscript>
+</head>
+<body data-page="gallery">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="Beams & Burn home">
+      <img src="images/Logo.avif" alt="" class="brand-mark" width="42" height="42" />
+      <span class="brand-word">Beams<span class="amp">&amp;</span>Burn</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="index.html" class="nav-link" data-nav="home">Home</a>
+      <a href="about.html" class="nav-link" data-nav="about">About</a>
+      <a href="gallery.html" class="nav-link" data-nav="gallery">Gallery</a>
+      <a href="services.html" class="nav-link" data-nav="services">Services</a>
+      <a href="products.html" class="nav-link" data-nav="products">Products</a>
+      <a href="contact.html" class="nav-link nav-cta" data-nav="contact">Start a Project</a>
+    </nav>
+    <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap page-hero-inner">
+      <p class="eyebrow">Gallery</p>
+      <h1>Recent work from the workshop</h1>
+      <p class="lead">A selection of pieces we've engraved for real clients and projects. Tap any image for a closer look.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div id="galleryGrid" class="gallery-grid" data-reveal-group>
+
+        <div class="gallery-item-wrap" data-reveal style="--i:0">
+          <img data-index="0" class="gallery-item" src="images/gallery/gallery1.avif" alt="Row of engraved bamboo phone and menu stands on display" data-caption="Custom engraved phone &amp; menu stands" loading="lazy">
+          <span class="zoom-hint" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+        </div>
+
+        <div class="gallery-item-wrap" data-reveal style="--i:1">
+          <img data-index="1" class="gallery-item" src="images/gallery/gallery2.avif" alt="Two engraved wood tumblers, personalized with names Rebecca and Joseph" data-caption="Personalized name tumblers" loading="lazy">
+          <span class="zoom-hint" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+        </div>
+
+        <div class="gallery-item-wrap" data-reveal style="--i:2">
+          <img data-index="2" class="gallery-item" src="images/gallery/gallery3.avif" alt="Pair of engraved wood recognition medallions with logo and name" data-caption="Corporate recognition medallions" loading="lazy">
+          <span class="zoom-hint" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+        </div>
+
+        <div class="gallery-item-wrap" data-reveal style="--i:3">
+          <img data-index="3" class="gallery-item" src="images/gallery/gallery4.avif" alt="Circular engraved wood restaurant sign with matching keychains" data-caption="Restaurant branding &amp; keychains" loading="lazy">
+          <span class="zoom-hint" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+        </div>
+
+        <div class="gallery-item-wrap" data-reveal style="--i:4">
+          <img data-index="4" class="gallery-item" src="images/gallery/gallery5.avif" alt="Round engraved wood keepsake with illustrated clasped hands design" data-caption="Personalized keepsake medallion" loading="lazy">
+          <span class="zoom-hint" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+        </div>
+
+        <div class="gallery-item-wrap" data-reveal style="--i:5">
+          <img data-index="5" class="gallery-item" src="images/gallery/gallery6.avif" alt="Engraved wood board with hanging hook and bakery branding" data-caption="Engraved wood signage board" loading="lazy">
+          <span class="zoom-hint" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- lightbox overlay -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button id="closeLightbox" class="lightbox-close" aria-label="Close">&times;</button>
+  <button id="prevBtn" class="lightbox-arrow left" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="">
+    <p id="lightboxCaption" class="caption"></p>
+  </div>
+  <button id="nextBtn" class="lightbox-arrow right" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/Logo.avif" alt="" width="44" height="44" loading="lazy" />
+        <div>
+          <span class="word">Beams &amp; Burn</span>
+          <p class="tag">Crafted by hand. Finished by laser.</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <p class="footer-heading">Explore</p>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <p class="footer-heading">Workshop</p>
+        <a href="tel:+639123456789">+63 912 345 6789</a>
+        <a href="mailto:akuma@beamsnburn.ph">akuma@beamsnburn.ph</a>
+        <span>Benguet, Philippines</span>
+      </div>
+    </div>
+    <p class="footer-legal">&copy; <span id="year"></span> Beams &amp; Burn Laser Engraving. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/app.js" defer></script>
+</body>
+</html>

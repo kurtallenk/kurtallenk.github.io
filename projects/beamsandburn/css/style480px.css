@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Small-screen polish (<=480px)
+   Most responsiveness lives in style.css / navbar.css; this file is for
+   final tightening only — never hides primary content.
+   ========================================================================== */
+
+.wrap { padding-inline: 1.1rem; }
+
+.hero-title { font-size: clamp(2.1rem, 1.4rem + 6vw, 2.6rem); }
+.hero-actions .btn { flex: 1 1 auto; }
+
+.about-card, .contact-form-card, .contact-info { padding: 1.5rem; }
+
+.gallery-grid { gap: 0.75rem; }
+
+.footer-inner { text-align: center; }
+.footer-brand { justify-content: center; }
+.contact-detail { justify-content: flex-start; }
+
+.cta-banner { text-align: left; }
+
+.process { grid-template-columns: 1fr; gap: 1.75rem; }

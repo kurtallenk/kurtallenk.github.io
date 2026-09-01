@@ -1,0 +1,222 @@
+/* =========================================================
+   KURT CURSOR - KURSOR
+   ========================================================= */
+.futuristic-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 24px;
+    height: 24px;
+
+    pointer-events: none;
+    z-index: 999999;
+
+    transform: translate(-50%, -50%);
+
+    border: 2px solid #00d9ff;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(0, 217, 255, 0.8) 18%,
+            rgba(0, 80, 255, 0.25) 45%,
+            transparent 70%
+        );
+
+    box-shadow:
+        0 0 6px #00d9ff,
+        0 0 15px #008cff,
+        0 0 30px rgba(0, 140, 255, 0.7);
+
+    transition:
+        width 0.2s ease,
+        height 0.2s ease,
+        border-color 0.2s ease;
+
+    mix-blend-mode: screen;
+}
+
+/* Inner energy core */
+.futuristic-cursor::before {
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 5px white,
+        0 0 12px #00d9ff,
+        0 0 22px #008cff;
+}
+
+/* Rotating HUD ring */
+.futuristic-cursor::after {
+    content: "";
+
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 217, 255, 0.6);
+
+    border-top-color: #00d9ff;
+    border-right-color: transparent;
+    border-bottom-color: #8b5cff;
+    border-left-color: transparent;
+
+    animation: cursorSpin 1.8s linear infinite;
+}
+
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.cursor-particle {
+    position: fixed;
+
+    width: 4px;
+    height: 4px;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    background: #00d9ff;
+
+    box-shadow:
+        0 0 5px #00d9ff,
+        0 0 10px #008cff,
+        0 0 18px rgba(0, 140, 255, 0.8);
+
+    z-index: 999998;
+
+    animation: particleFade 700ms ease-out forwards;
+}
+
+
+/* Small secondary particles */
+
+.cursor-particle.small {
+    width: 2px;
+    height: 2px;
+
+    background: #8b5cff;
+
+    box-shadow:
+        0 0 5px #8b5cff,
+        0 0 12px #8b5cff;
+}
+
+
+/* =========================================================
+   HOVER STATE
+   ========================================================= */
+
+.futuristic-cursor.hover {
+    width: 34px;
+    height: 34px;
+
+    border-color: #8b5cff;
+
+    box-shadow:
+        0 0 8px #00d9ff,
+        0 0 20px #008cff,
+        0 0 40px rgba(139, 92, 255, 0.8);
+}
+
+
+/* =========================================================
+   CLICK STATE
+   ========================================================= */
+
+.futuristic-cursor.click {
+    width: 45px;
+    height: 45px;
+
+    border-color: white;
+
+    box-shadow:
+        0 0 10px white,
+        0 0 25px #00d9ff,
+        0 0 50px #8b5cff;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes cursorSpin {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+
+@keyframes particleFade {
+
+    0% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(
+                calc(-50% + var(--particle-x)),
+                calc(-50% + var(--particle-y))
+            )
+            scale(0);
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* Main cursor */
+.futuristic-cursor {
+    display: none;
+}
+
+
+}

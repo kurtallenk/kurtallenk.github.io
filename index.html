@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta property="og:title" content="Kurt Allen | Web Developer, UI/UX Designer, 3D & Interactive Developer" />
+<meta property="og:description" content="From clean simple website interfaces to immersive environments. I build digital experiences that combine technology, design, and creativity." />
+<meta property="og:image" content="assets/images/KurtAllen.png" />
+<meta property="og:url" content="https://kurtallenk.great-site.net/" />
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+<title>Kurt Allen | Web Developer · UI/UX Designer</title>
+<meta name="description" content="Kurt Kinch — I build digital experiences. Full-stack development, UI/UX design, and interactive 3D web experiences." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+<link rel="stylesheet" href="cursor.css?v=20260816" />
+<link rel="stylesheet" href="style.css?v=20260828" />
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://unpkg.com/three@0.181.1/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.181.1/examples/jsm/",
+        "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js"
+    }
+}
+</script>
+</head>
+<body>
+
+<!--
+██╗  ██╗██╗   ██╗██████╗ ████████╗
+██║ ██╔╝██║   ██║██╔══██╗╚══██╔══╝
+█████╔╝ ██║   ██║██████╔╝   ██║
+██╔═██╗ ██║   ██║██╔══██╗   ██║
+██║  ██╗╚██████╔╝██║  ██║   ██║
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝
+
+          A L L E N
+
+
+> SYSTEM STATUS
+
+  ✓ Developer detected
+  ✓ DevTools detected
+  ✓ Curiosity level: EXTREME
+  ✓ Secret developer area accessed
+
+
+> RUNNING DIAGNOSTICS...
+
+  Coffee dependency     ███████████████████░  97%
+  CSS complexity        ████████████████████  100%
+  Pixel perfection      ███████████████████░  96%
+  Bugs                  ███████░░░░░░░░░░░░░  CLASSIFIED
+  Sleep schedule        ████░░░░░░░░░░░░░░░░  CRITICAL
+
+
+╔══════════════════════════════════════════╗
+║                                          ║
+║       Y O U   F O U N D   T H E          ║
+║                                          ║
+║              S O U R C E                 ║
+║                                          ║
+╚══════════════════════════════════════════╝
+
+
+👁  Welcome behind the interface.
+
+You weren't supposed to find this.
+But since you're here...
+
+Respect. 🤝
+
+
+— Kurt Allen
+
+
+[ END OF TRANSMISSION ] █
+-->
+
+
+
+
+<!-- ============ CUSTOM CURSOR (desktop only) ============ -->
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="futuristic-cursor"></div>
+
+<!-- ============ LOADER ============ -->
+<div id="loader" class="loader">
+  <div class="loader-inner">
+    <div class="logoContainer">
+      <img class="logo" src="assets/images/KurtLogo.avif" alt="logo">
+    </div>
+    <p class="loader-name">KURT ALLEN</p>
+    <p class="loader-status" id="loaderStatus">INITIALIZING EXPERIENCE...</p>
+    <div class="loader-bar"><div class="loader-bar-fill" id="loaderFill"></div></div>
+    <p class="loader-percent" id="loaderPercent">0%</p>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#hero" class="nav-brand">
+    <img id="kurtlogo" class="logo" src="assets/images/KurtLogo.avif" alt="logo">
+  </a>
+  <nav class="nav-links" id="navLinks">
+    <div class="logoContainer">
+      <img class="logo_toggle" src="assets/images/KurtLogo.avif" alt="logo">
+    </div>
+    <a href="#hero" data-nav>Home</a>
+    <a href="#about" data-nav>About</a>
+    <a href="#services" data-nav>Services</a>
+    <a href="#stack" data-nav>Skills</a>
+    <a href="#experience" data-nav>Experience</a>
+    <a href="#projects" data-nav>Projects</a>
+    <a href="#contact" data-nav>Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="hero">
+    <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+    <div class="hud" aria-hidden="true">
+      <span class="hud-item hud-tl">KURT.exe</span>
+      <span class="hud-item hud-tr">STATUS: <em>ONLINE</em></span>
+      <span class="hud-item hud-bl">MODE: CREATIVE_DEVELOPER</span>
+      <span class="hud-item hud-br" id="hudCoords">X:0000 Y:0000</span>
+    </div>
+
+    <div class="hero-content">
+      <p class="eyebrow reveal">Web Developer · UI/UX Designer</p>
+      <h1 class="hero-title">
+        <span class="reveal-line"><span class="reveal-word">KURT</span></span>
+        <span class="reveal-line"><span class="reveal-word">ALLEN</span></span>
+      </h1>
+      <h2 class="hero-sub reveal">I BUILD DIGITAL <span class="text-glow">EXPERIENCES.</span></h2>
+      <p class="hero-desc reveal">
+        I combine Web development, UI/UX design and creative technology to build functional, engaging digital experiences that are both visually compelling and user-focused.
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn btn-ghost magnetic"><span class="icon_text_center">
+          <span class="material-symbols-outlined">mystery</span>
+          Explore My Work</span></a>
+        <a href="/Kurt Allen Kinchalos - CV.pdf" target="_blank" class="btn btn-ghost magnetic">
+          <span class="icon_text_center">
+            <span class="material-symbols-outlined">download</span>Download CV
+          </span>
+        </a>
+        <a href="#contact" id="heroWorkButton" class="btn btn-primary magnetic">
+          <span class="icon_text_center">
+            <span class="material-symbols-outlined">handshake</span>Let's Work Together
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <span>SCROLL</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="section">
+    <div class="section-head">
+      <span class="section-label">01 / ABOUT - SYSTEM_PROFILE</span>
+      
+    </div>
+    <div class="about-grid">
+      <div class="about-copy">
+        <h2 class="section-title">Beyond Code.</h2>
+        <p class="lead">
+          I'm a developer with a passion for turning ideas into functional, visually engaging
+          digital experiences. With years of experience across software development,
+          web development, design and interactive technologies, I enjoy working across the entire
+          creative and technical process.
+        </p>
+        <p>
+          My approach combines traditional web development fundamentals with modern interaction design, 3D graphics, animation and user-focused interfaces. I like building things from scratch and understanding how systems actually work, not just assembling components.
+        </p>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat_num_and_suffix">
+              <span class="stat-num" data-count="10">10</span>
+            <span class="stat-suffix">+</span>
+            </div>
+            <span class="stat-label">Years Building</span>
+          </div>
+
+          <div class="stat">
+            <div class="stat_num_and_suffix">
+              <span class="stat-num" data-count="15">0</span><span class="stat-suffix">+</span>
+            </div>
+            <span class="stat-label">Tools &amp; Languages</span>
+          </div>
+          <!-- <div class="stat">
+            <span class="stat-num" data-count="2">0</span>
+            <span class="stat-label">Sides of the Screen — Design &amp; Code</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="about-visual">
+        <canvas id="aboutCanvas" aria-hidden="true"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+<section id="services" class="section">
+  <div class="section-head">
+    <span class="section-label">02 / SERVICES — WHAT_I_BUILD</span>
+    <h2 class="section-title">What I Can Build.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <h3>Web Development</h3>
+      <p>Custom websites using HTML, CSS, JavaScript, PHP and modern web technologies.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <h3>UI/UX Design</h3>
+      <p>Clean, intuitive and visually engaging interfaces using Figma and other design tools.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <h3>3D Websites</h3>
+      <p>Browser-based 3D environments, interactive objects, WebGL experiences and visual studies.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <h3>Wedding Websites</h3>
+      <p>Custom wedding websites, RSVP systems, dashboards, guest management and interactive experiences.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">05</span>
+      <h3>Website Enhancement</h3>
+      <p>Improve existing websites with better UI, animation, responsiveness and performance.</p>
+    </div>
+  </div>
+</section>
+
+    <!-- ============ TECH STACK ============ -->
+<section id="stack" class="section stack-section">
+
+    <div class="stack-header">
+
+        <div class="stack-heading">
+
+            <span class="section-label">
+                03 / SKILLS — TECHNOLOGY SYSTEM
+            </span>
+
+            <h2 class="section-title">
+                Tools Behind<br>
+                <span>What I Build.</span>
+            </h2>
+
+            <p class="stack-intro">
+                A collection of technologies I use to design, develop,
+                prototype, and build interactive digital experiences.
+            </p>
+
+        </div>
+
+
+        <!-- System status -->
+        <div class="stack-status">
+
+            <!-- <div class="status-indicator">
+                <span class="status-dot"></span>
+                <span>SYSTEM ONLINE</span>
+            </div> -->
+
+            <!-- <div class="status-line"></div> -->
+
+            <div class="status-meta">
+                <span class="status-dot"></span><span>TECHNOLOGIES</span>
+                <strong id="stackCount">15</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         CATEGORY FILTER
+         ===================================================== -->
+
+    <div class="stack-controls">
+
+        <div class="stack-filter-label">
+            <span class="filter-marker"></span>
+            FILTER SYSTEM
+        </div>
+
+        <div class="stack-filters" role="tablist">
+
+            <button
+                class="stack-filter active"
+                data-filter="all"
+                type="button">
+                All
+            </button>
+
+            <button
+                class="stack-filter"
+                data-filter="Web"
+                type="button">
+                Web
+            </button>
+
+            <button
+                class="stack-filter"
+                data-filter="Programming"
+                type="button">
+                Programming
+            </button>
+
+            <button
+                class="stack-filter"
+                data-filter="Design"
+                type="button">
+                Design
+            </button>
+
+            <button
+                class="stack-filter"
+                data-filter="3D / Interactive"
+                type="button">
+                3D
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TECHNOLOGY DISPLAY
+         ===================================================== -->
+
+    <div class="stack-interface">
+
+        <!-- Decorative grid -->
+        <div class="stack-grid"></div>
+
+        <!-- Corner decorations -->
+        <span class="stack-corner stack-corner-tl"></span>
+        <span class="stack-corner stack-corner-tr"></span>
+        <span class="stack-corner stack-corner-bl"></span>
+        <span class="stack-corner stack-corner-br"></span>
+
+
+        <!-- Technology cards -->
+         <div id="head_title" class="head_title">
+            <span id="header_text" class="header_text">ALL</span>
+          </div>
+
+        <div
+            class="tech-grid"
+            id="techGrid"
+            aria-live="polite">
+
+        
+        </div>
+      
+        <!-- Selected technology panel -->
+        <aside
+            class="tech-inspector"
+            id="techInspector">
+
+          
+
+            <div class="inspector-top">
+
+                <span class="inspector-label">
+                    SELECTED TECHNOLOGY
+                </span>
+
+                <span
+                    class="inspector-index"
+                    id="inspectorIndex">
+                    01
+                </span>
+
+            </div>
+
+
+            <div class="inspector-icon" id="inspectorIcon">
+                <div class="inspector-icon-glow"></div>
+
+                <img
+                    id="inspectorIconImage"
+                    src="./assets/icons/html.svg"
+                    alt="HTML">
+            </div>
+
+
+            <div class="inspector-content">
+
+                <div class="inspector-group" id="inspectorGroup">
+                    WEB
+                </div>
+
+                <h3 id="inspectorName">
+                    HTML
+                </h3>
+
+                <p id="inspectorDescription">
+                    Semantic structure — where every page starts.
+                </p>
+
+            </div>
+
+
+            <div class="inspector-footer">
+
+                <span>
+                    STATUS
+                </span>
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+
+
+
+</section>
+
+  <!-- ============ PHILOSOPHY ============ -->
+  <section id="philosophy" class="section philosophy-section">
+    <div class="section-head">
+      <span class="section-label">04 / PHILOSOPHY - READ_ME</span>
+      <h2 class="section-title">I Still Believe in the Web.</h2>
+    </div>
+    <div class="philosophy-grid">
+      <div class="philosophy-copy">
+        <p>
+          I started with the fundamentals HTML, CSS, JavaScript, databases with SQL, server-side
+          programming with PHP and understanding how everything works underneath the interface.
+        </p>
+        <p>
+          While modern frameworks and tools are powerful, I still enjoy building directly with the web platform itself.
+        </p>
+        <p>
+          Sometimes the best solution is simply clean HTML, thoughtful CSS, efficient JavaScript and a good understanding of the browser.
+        </p>
+      </div>
+      <div class="terminal" id="terminal">
+        <div class="terminal-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="terminal-title">kurt@web-platform ~ </span>
+        </div>
+        <pre class="terminal-body" id="terminalBody"></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience" class="section">
+    <div class="section-head">
+      <span class="section-label">05 / EXPERIENCE - TIMELINE</span>
+      <h2 class="section-title">10+ Years of Building.</h2>
+      <p class="section-note">Turning ideas into modern, functional digital experiences.</p>
+    </div>
+    <div class="timeline">
+
+  <div class="timeline-track"></div>
+
+  <!-- ============ Web / App Developer & IT Specialist ============ -->
+  <div class="timeline-item">
+
+    <div class="timeline-marker">
+      <span></span>
+    </div>
+    <div class="timeline-content">
+
+      <div class="timeline-meta">
+        <span class="timeline-date">2015 — PRESENT</span>
+        <span class="timeline-company">FREELANCE</span>
+      </div>
+
+      <h3>Web / App Developer &amp; IT Specialist</h3>
+
+      <p class="timeline-intro">
+        Providing end-to-end technology solutions from web development
+        and business systems to IT support, graphic design, and 3D experiences.
+      </p>
+
+      <div class="experience-grid">
+
+        <!-- CORE DEVELOPMENT -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">01</span>
+            <h4>Development &amp; IT</h4>
+          </div>
+
+          <ul>
+            <li>Provided IT solutions to various clients.</li>
+            <li>Developed websites and web applications.</li>
+            <li>Developed systems to optimize business transactions and workflows.</li>
+            <li>Troubleshot code errors and computer program issues.</li>
+            <li>Diagnosed and resolved hardware and software problems.</li>
+          </ul>
+
+        </div>
+
+
+        <!-- GRAPHIC DESIGN -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">02</span>
+            <h4>Graphic Design</h4>
+          </div>
+
+          <div class="skill-tags">
+            <span>Logo Design</span>
+            <span>ID Design</span>
+            <span>Tarpaulin</span>
+            <span>Advertising</span>
+            <span>T-Shirt Design</span>
+            <span>Photo Enhancement</span>
+            <span>Photo Editing</span>
+            <span>Mug Design</span>
+          </div>
+
+        </div>
+
+
+        <!-- 3D DESIGN -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">03</span>
+            <h4>3D &amp; Interactive</h4>
+          </div>
+
+          <div class="skill-tags">
+            <span>3D Product Presentation</span>
+            <span>3D Buildings</span>
+            <span>3D Furniture</span>
+            <span>3D Objects</span>
+            <span>Interactive 3D</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+    <!-- ============ NCIP CAR ============ -->
+  <div class="timeline-item">
+
+    <div class="timeline-marker">
+      <span></span>
+    </div>
+
+    <div class="timeline-content">
+
+      <div class="timeline-meta">
+        <span class="timeline-date">2021 — 2022</span>
+        <span class="timeline-company">NCIP (National Commission on Indigenous Peoples)
+</span>
+      </div>
+
+      <h3>System Developer</h3>
+
+      <p class="timeline-intro">
+        Developed Financial Management System.
+      </p>
+
+      <div class="experience-grid">
+
+        <!-- CORE DEVELOPMENT -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">01</span>
+            <h4>Development</h4>
+          </div>
+
+          <ul>
+            <li>Designed and developed a custom Financial Management System that streamlined budgeting and reduced reporting time by 30%.</li>
+            <li>Conducted system optimization that improved operational efficiency across departments.</li>
+          </ul>
+
+        </div>
+
+        <!-- NETWORK -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">02</span>
+            <h4>Network</h4>
+          </div>
+
+          <div class="skill-tags">
+            <span>Server Setup and Configuration</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+    <!-- ============ Great Success LLC ============ -->
+  <div class="timeline-item">
+
+    <div class="timeline-marker">
+      <span></span>
+    </div>
+
+    <div class="timeline-content">
+
+      <div class="timeline-meta">
+        <span class="timeline-date">2019 — 2019</span>
+        <span class="timeline-company">Great Success LLC
+</span>
+      </div>
+
+      <h3>Web Designer, Graphics Designer &amp; IT Support</h3>
+
+      <p class="timeline-intro">
+        Performed website maintenance and updates for enhanced user experience.
+      </p>
+
+      <div class="experience-grid">
+
+        <!-- CORE DEVELOPMENT -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">01</span>
+            <h4>Development &amp; IT</h4>
+          </div>
+
+          <ul>
+            <li>Web Design, update and maintenance using Wix.</li>
+            <li>Provided IT solutions inside the company.</li>
+            
+          </ul>
+
+        </div>
+
+
+        <!-- GRAPHIC DESIGN -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">02</span>
+            <h4>Graphic Design</h4>
+          </div>
+
+          <div class="skill-tags">
+            <span>Logo Design</span>
+            <span>Book Cover Design</span>
+            <span>Flyers Design</span>
+            
+
+          </div>
+
+        </div>
+
+
+        <!-- Multimedia -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">03</span>
+            <h4>Multimedia</h4>
+          </div>
+
+          <div class="skill-tags">
+            <span>Video Advertisements</span>
+            <span>Web Intro Animation</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+    <!-- ============ Toyota System Administrator ============ -->
+  <div class="timeline-item">
+
+    <div class="timeline-marker">
+      <span></span>
+    </div>
+
+    <div class="timeline-content">
+
+      <div class="timeline-meta">
+        <span class="timeline-date">2016 — 2018</span>
+        <span class="timeline-company">TOYOTA BAGUIO CITY</span>
+      </div>
+
+      <h3>System Administrator &amp; IT Support</h3>
+
+      <p class="timeline-intro">
+        Maintained network and servers to ensure seamless operations. 
+      </p>
+
+      <div class="experience-grid">
+
+        <!-- CORE DEVELOPMENT -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">01</span>
+            <h4>Development &amp; IT</h4>
+          </div>
+
+          <ul>
+            <li>Developed an <b>Inventory Management System</b> to track assets effectively</li>
+            <li>Developed application for updating internal database programs.</li>
+          </ul>
+
+        </div>
+
+
+        <!-- GRAPHIC DESIGN -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">02</span>
+            <h4>Graphic Design</h4>
+          </div>
+
+          <div class="skill-tags">
+            <span>Logo Design</span>
+            <span>ID Design</span>
+            <span>Tarpaulin</span>
+            <span>Advertising</span>
+            <span>T-Shirt Design</span>
+            <span>Photo Enhancement</span>
+            <span>Photo Editing</span>
+          </div>
+
+        </div>
+
+
+        <!-- ISO -->
+        <div class="experience-group">
+
+          <div class="experience-group-header">
+            <span class="experience-index">03</span>
+            <h4>ISO Team</h4>
+          </div>
+
+          <div class="skill-tags">
+            <span>Document Controller</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="section">
+    <div class="section-head">
+      <span class="section-label">06 / WORK - SELECTED</span>
+      <h2 class="section-title">Selected Work.</h2>
+    </div>
+
+    <div class="projects-grid">
+      <!-- ============ TWO ORBITS Project ============ -->
+      <article class="project-card featured">
+        <div class="project-media" data-tilt>
+          <img src="/assets/images/two_orbits.avif" alt="" loading="lazy">
+
+          <div class="project-media-glow" style="--glow: var(--violet)"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-cat">3D Web Experiences</span>
+          <h3>3D Wedding Website (Two Orbits)</h3>
+          <p>
+            Interactive 3D experiences that run directly in a web browser. Users can explore virtual environments, interact with 3D objects and experience smooth animations, movement, lighting and visual effects.
+          </p>
+          <div class="project-tech">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Three.js</span><span>WebGL</span><span>GSAP</span>
+          </div>
+          <a href="https://easywedding.great-site.net/two-orbits/" target="_blank" class="project-link magnetic">View Project <span class="material-symbols-outlined">arrow_right</span></a>
+        </div>
+      </article>
+        
+       <!-- ============ TriniTrends Project ============ -->
+      <article class="project-card">
+        <div class="project-media trinitrends" data-tilt>
+          <div class="project-media-glow" style="--glow: var(--blue)"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-cat">TriniTrends</span>
+          <h3>E-Commerce Website</h3>
+          <p data-target="E-commerce website designed for TriniTrends, featuring a product catalog, mobile-friendly admin dashboard, product management, image uploads, and website analytics for tracking customer activity and popular products.">
+            E-commerce website designed for TriniTrends, featuring a product catalog, mobile-friendly admin dashboard, product management, image uploads, and website analytics for tracking customer activity and popular products.
+          </p>
+          <div class="project-tech">
+            <span>JavaScript</span><span>CSS Animation</span><span>UI/UX</span><span>Mobile Responsive</span><span>Google Apps Script</span>
+            <span>PHP</span><span>MySQL</span><span>Figma</span>
+          </div>
+          <a href="https://trinitrends.lovestoblog.com/" target="_blank" class="project-link magnetic">View Project <span class="material-symbols-outlined">arrow_right</span></a>
+        </div>
+      </article>
+
+      <!-- ============ Beamsnburn Project ============ -->
+      <article class="project-card">
+        <div class="project-media beamsnburn" data-tilt>
+          <div class="project-media-glow"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-cat">Wood Laser Craft</span>
+          <h3>Beams & Burn</h3>
+          <p>
+            Wood laser printing and engraving brand, blending natural craftsmanship with modern precision. Designed to showcase Beam N Burn’s unique work through bold visuals, refined interactions, and a distinctive responsive experience built to make the brand stand out.
+          </p>
+          <div class="project-tech">
+            <span>JavaScript</span><span>CSS Animation</span><span>UI/UX</span><span>Mobile Responsive</span><span>Google Apps Script</span>
+          </div>
+          <a href="https://beamsnburn.great-site.net/" target="_blank" class="project-link magnetic">View Project <span class="material-symbols-outlined">arrow_right</span></a>
+        </div>
+      </article>
+
+      <!-- ============ NCIP FMS Project ============ -->
+      <article class="project-card">
+        <div class="project-media ncip" data-tilt>
+          <div class="project-media-glow"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-cat">Financial Management System</span>
+          <h3>NCIP FMS</h3>
+          <p>
+            A web-based Financial Management System designed to help organizations efficiently monitor, manage, and analyze their financial operations. The system provides a centralized dashboard for tracking income, expenses, budgets, transactions and financial performance.
+          </p>
+          <div class="project-tech">
+            <span>PHP</span><span>MySQL</span><span>Google Apps Script</span><span>REST APIs</span><span>JavaScript</span>
+          </div>
+          <a href="/projects/ncip-fms/" target="_blank" class="project-link magnetic">View Project <span class="material-symbols-outlined">arrow_right</span></a>
+        </div>
+      </article> 
+
+      <!-- ============ Minimax Project ============ -->
+      <article class="project-card">
+        <div class="project-media minimax" data-tilt>
+          <div class="project-media-glow" style="--glow: var(--violet)"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-cat">Custom Corporate Website</span>
+          <h3>Minimax</h3>
+          <p>
+           Corporate website designed for Minimax Business Solutions Co., showcasing the company’s services, expertise, and commitment to helping businesses operate more efficiently.
+            The website was designed with a clean and trustworthy visual identity, intuitive navigation, responsive layouts and clear calls-to-action.
+                      </p>
+          <div class="project-tech">
+            <span>Wix</span><span>CSS</span><span>JavaScript</span><span>HTML</span><span>Wix Harmony</span>
+          </div>
+          <a href="https://kurtallenkinchalos.wixsite.com/minimax-business-sol" target="_blank" class="project-link magnetic">View Project <span class="material-symbols-outlined">arrow_right</span></a>
+        </div>
+      </article>
+
+      <!-- ============ PIOHPC Project ============ -->
+      <article class="project-card">
+        <div class="project-media piohpc" data-tilt>
+          <div class="project-media-glow" style="--glow: var(--violet)"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-cat">Custom Corporate Website</span>
+          <h3>PIOHSPC Corporate Website</h3>
+          <p>
+            A corporate website designed for an occupational health and safety consultancy, combining strong visual communication with a professional service-focused user experience. The site features responsive navigation, service presentation, interactive project/gallery viewing, consultation CTAs, and a mobile-first responsive layout.
+          </p>
+          <div class="project-tech">
+            <span>PHP</span><span>MySQL</span><span>JavaScript</span><span>APIs</span>
+          </div>
+          <a href="/projects/piohspc/" target="_blank" class="project-link magnetic">View Project <span class="material-symbols-outlined">arrow_right</span></a>
+        </div>
+      </article>
+
+      <!-- ============ SKY HIGH Project ============ -->
+      <article class="project-card">
+        <div class="project-media" data-tilt>
+          <img src="/assets/images/sky_high.avif" alt="" loading="lazy">
+
+          <div class="project-media-glow" style="--glow: var(--violet)"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-cat">3D Web Experiences</span>
+          <h3>3D Wedding Website (Sky High)</h3>
+          <p>
+            Transforming wedding websites into interactive digital experiences. Guests can explore custom 3D environments, interact with objects, discover the couple's story, and experience cinematic animations, dynamic lighting, movement and visual effects all without installing an app.
+          </p>
+          <div class="project-tech">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Three.js</span><span>WebGL</span><span>GSAP</span>
+          </div>
+          <a href="https://easywedding.great-site.net/two-orbits/" target="_blank" class="project-link magnetic">View Project <span class="material-symbols-outlined">arrow_right</span></a>
+        </div>
+      </article>
+   
+      <!-- ============ EasyWedding Demo1 Project ============ -->
+      <article class="project-card">
+        <div class="project-media kurt_cy" data-tilt>
+          <div class="project-media-glow" style="--glow: var(--blue)"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-cat">Turning Wedding Websites Into Experiences</span>
+          <h3>Wedding Website</h3>
+          <p>
+            Experiments in wedding-themed interaction: the "Bride Blossom" game, flipbook-style
+            Our Story pages, interactive RSVP, dress-code and entourage dashboards.
+          </p>
+          <div class="project-tech">
+            <span>JavaScript</span><span>CSS Animation</span><span>UI/UX</span><span>Mobile Responsive</span><span>Google Apps Script</span>
+          </div>
+          <a href="https://easywedding.great-site.net/website-demo1/" target="_blank" class="project-link magnetic">View Project <span class="material-symbols-outlined">arrow_right</span></a>
+        </div>
+      </article>
+        
+         
+
+    </div>
+  </section>
+
+  <!-- ============ THE LAB ============ -->
+  <section id="lab" class="section lab-section">
+    <div class="section-head">
+      <span class="section-label">07 / THE LAB — EXPERIMENTS</span>
+      <h2 class="section-title">The Lab.</h2>
+      <p class="section-note">Threejs and WebGL experiments. Click "Explore" to run one.</p>
+    </div>
+    <div class="lab-grid" id="labGrid">
+      <button class="lab-card" data-exp="geometry">
+        <span class="lab-index">01</span>
+        <h3>Geometry</h3>
+        <p>Interactive rotating geometry.</p>
+        <span class="lab-explore">Explore <span class="material-symbols-outlined">arrow_right</span></span>
+      </button>
+      <button class="lab-card" data-exp="particles">
+        <span class="lab-index">02</span>
+        <h3>Particles</h3>
+        <p>Particle field responding to the mouse.</p>
+        <span class="lab-explore">Explore <span class="material-symbols-outlined">arrow_right</span></span>
+      </button>
+      <button class="lab-card" data-exp="physics">
+        <span class="lab-index">03</span>
+        <h3>Physics</h3>
+        <p>Simple collision / interaction demo.</p>
+        <span class="lab-explore">Explore <span class="material-symbols-outlined">arrow_right</span></span>
+      </button>
+      <button class="lab-card" data-exp="webgl">
+        <span class="lab-index">04</span>
+        <h3>WebGL</h3>
+        <p>Interactive lighting &amp; material study.</p>
+        <span class="lab-explore">Explore <span class="material-symbols-outlined">arrow_right</span></span>
+      </button>
+      <button class="lab-card" data-exp="motion">
+        <span class="lab-index">05</span>
+        <h3>Motion</h3>
+        <p>GSAP + Three.js animation study.</p>
+        <span class="lab-explore">Explore <span class="material-symbols-outlined">arrow_right</span></span>
+      </button>
+      <button class="lab-card" data-exp="drive">
+        <span class="lab-index">06</span>
+        <h3>Driving Game</h3>
+        <p>GSAP + Three.js animation study.</p>
+        <span class="lab-explore">Explore <span class="material-symbols-outlined">arrow_right</span></span>
+      </button>
+    </div>
+
+
+    <div class="lab-stage" id="labStage">
+          <!-- MOBILE CAR CONTROLS for DRIVE -->
+  <div class="drive-controls" id="driveControls">
+
+    <div class="drive-steering">
+      <button
+        type="button"
+        class="drive-btn drive-left"
+        id="steerLeft"
+        aria-label="Steer left"
+      >
+        ◀
+      </button>
+
+      <button
+        type="button"
+        class="drive-btn drive-right"
+        id="steerRight"
+        aria-label="Steer right"
+      >
+        ▶
+      </button>
+    </div>
+
+    <div class="drive-pedals">
+
+      <button
+        type="button"
+        class="drive-btn drive-reverse"
+        id="reverse"
+        aria-label="Reverse"
+      >
+        <span>▼</span>
+        <small>REV</small>
+      </button>
+
+      <button
+        type="button"
+        class="drive-btn drive-gas"
+        id="gas"
+        aria-label="Accelerate"
+      >
+        <span>▲</span>
+        <small>GO</small>
+      </button>
+
+    </div>
+
+  </div>
+      <canvas id="labCanvas"></canvas>
+      <button class="lab-close" id="labClose" aria-label="Close experiment">✕</button>
+      <span class="lab-stage-label" id="labStageLabel"></span>
+    </div>
+  </section>
+
+<!-- ============ EASY WEDDING ============ -->
+<section id="wedding" class="section wedding-section">
+<span class="section-label">08 / SIDE-PROJECT</span>
+  <div class="wedding-bg-grid"></div>
+  <div class="wedding-orb wedding-orb-1"></div>
+  <div class="wedding-orb wedding-orb-2"></div>
+
+  <div class="wedding-inner">
+
+    <!-- LEFT / CONTENT -->
+    <div class="wedding-content">
+
+      <div class="section-head wedding-head">
+        <span class="section-label">EASY_WEDDING / DIGITAL EXPERIENCE<span class="wedding-status">
+          <i></i>
+          LIVE PROJECT
+        </span></span>
+
+        <h2 class="section-title">
+          I Also Build
+          <span>Wedding Experiences.</span>
+        </h2>
+      </div>
+
+      <p class="wedding-copy">
+        Easy Wedding Website Services creates personalized wedding websites
+        for couples who want more than a digital invitation.
+      </p>
+
+      <!-- Project metadata -->
+      <div class="wedding-meta">
+
+        <div class="wedding-meta-item">
+          <span class="meta-label">TYPE</span>
+          <strong>Web Platform</strong>
+        </div>
+
+        <div class="wedding-meta-item">
+          <span class="meta-label">FOCUS</span>
+          <strong>Wedding Technology</strong>
+        </div>
+
+        <div class="wedding-meta-item">
+          <span class="meta-label">APPROACH</span>
+          <strong>Custom Built</strong>
+        </div>
+
+      </div>
+
+      <!-- Features -->
+      <div class="wedding-capabilities">
+
+        <div class="capability-heading">
+          <span>PLATFORM CAPABILITIES</span>
+          <span class="capability-count">11 MODULES</span>
+        </div>
+
+        <div class="wedding-features">
+
+          <span>
+            <b>01</b>
+            Custom Design
+          </span>
+
+          <span>
+            <b>02</b>
+            RSVP
+          </span>
+
+          <span>
+            <b>03</b>
+            Guest Management
+          </span>
+
+          <span>
+            <b>04</b>
+            Photo Gallery
+          </span>
+
+          <span>
+            <b>05</b>
+            Wedding Dashboard
+          </span>
+
+          <span>
+            <b>06</b>
+            Table Finder
+          </span>
+
+          <span>
+            <b>07</b>
+            QR Codes
+          </span>
+
+          <span>
+            <b>08</b>
+            Wedding Games
+          </span>
+
+          <span>
+            <b>09</b>
+            Interactive Story
+          </span>
+
+          <span>
+            <b>10</b>
+            Smart RSVP
+          </span>
+
+          <span>
+            <b>11</b>
+            Admin Tools
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="wedding-actions">
+
+        <a
+          href="https://easywedding.great-site.net/"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary magnetic wedding-cta"
+        >
+          <span>Explore Easy Wedding</span>
+          <span class="material-symbols-outlined">arrow_right</span>
+        </a>
+
+        <span class="wedding-note">
+          <i></i>
+          Personalized wedding websites
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- RIGHT / PRODUCT PREVIEW -->
+    <div class="wedding-showcase">
+
+      <div class="wedding-preview">
+
+        <!-- Browser chrome -->
+        <div class="preview-header">
+
+          <div class="preview-controls">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="preview-address">
+            <span class="address-lock">⌁</span>
+            easywedding.great-site.net
+          </div>
+
+          <div class="preview-live">
+            <i></i>
+            LIVE
+          </div>
+
+        </div>
+
+        <!-- Image -->
+        <div class="preview-image">
+
+          <img
+            src="assets/images/easywedding.avif"
+            alt="Easy Wedding Website preview"
+          >
+
+          <div class="preview-scan"></div>
+
+          <div class="preview-corner preview-corner-tl"></div>
+          <div class="preview-corner preview-corner-br"></div>
+
+        </div>
+
+        <!-- Preview footer -->
+        <div class="preview-footer">
+
+          <div>
+            <span class="preview-label">PROJECT</span>
+            <strong>EASY_WEDDING</strong>
+          </div>
+
+          <div>
+            <span class="preview-label">STATUS</span>
+            <strong class="online">
+              <i></i>
+              OPERATIONAL
+            </strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Floating technical label -->
+      <div class="wedding-float wedding-float-top">
+        <span class="float-dot"></span>
+        DIGITAL EXPERIENCE
+      </div>
+
+      <div class="wedding-float wedding-float-bottom">
+        <span>11</span>
+        FEATURES
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- ============ DESIGN x CODE ============ -->
+  <section id="design-code" class="section dc-section">
+    <span class="section-label">09 / PROCESS — DESIGN_×_CODE</span>
+    <div class="section-head center">
+      
+      <h2 class="section-title">Design × Code.</h2>
+      <p class="section-note">I enjoy working where design and technology meet.</p>
+    </div>
+    <div class="dc-grid">
+      <div class="dc-col dc-design">
+        <h3>DESIGN</h3>
+        <ul>
+          <li>UI/UX</li><li>Typography</li><li>Layout</li><li>Color</li><li>Animation</li><li>Branding</li>
+        </ul>
+      </div>
+      <div class="dc-center">
+        <span>KURT</span>
+      </div>
+      <div class="dc-col dc-code">
+        <h3>CODE</h3>
+        <ul>
+          <li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>C#</li><li>Python</li><li>SQL</li><li>Three.js</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="section contact-section">
+<span class="section-label section-label-10">10 / CONTACT — TRANSMIT</span>
+  
+<div class="contact-terminal">
+    
+    <!-- Background decoration -->
+    <div class="contact-grid"></div>
+    <div class="contact-glow contact-glow-1"></div>
+    <div class="contact-glow contact-glow-2"></div>
+
+    <!-- Header -->
+    <div class="contact-topline">
+      
+
+      <span class="contact-status">
+        <span class="status-dot"></span>
+        SYSTEM ONLINE
+      </span>
+    </div>
+
+    <!-- Main content -->
+    <div class="contact-main">
+
+      <!-- Transmission Core -->
+      <div class="contact-core-wrap">
+
+        <div class="contact-orbit contact-orbit-1"></div>
+        <div class="contact-orbit contact-orbit-2"></div>
+        <div class="contact-orbit contact-orbit-3"></div>
+
+        <div class="contact-signal">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <a
+          href="#transmission_form"
+          class="contact-transmit magnetic"
+          aria-label="Send email"
+        >
+          <span class="material-symbols-outlined">arrows_more_up</span>
+
+          <span class="contact-transmit-label">
+            TRANSMIT
+          </span>
+
+          <span class="contact-transmit-sub">
+            START A CONVERSATION
+          </span>
+        </a>
+
+      </div>
+
+      <div class="contact-copy">
+
+        <div class="contact-eyebrow">
+          AVAILABLE FOR NEW PROJECTS
+        </div>
+
+        <h2 class="contact-title">
+          Let's Build
+          <span>Something.</span>
+        </h2>
+
+        <p class="contact-description">
+          Have an idea for a website, web application,
+          interactive experience, or wedding website?
+          Let's turn it into something real.
+        </p>
+        <a href="/Kurt Allen Kinchalos - CV.pdf" target="_blank" class="btn btn-ghost magnetic" style="width: 100%; margin-top: 20px; align-items: right;">
+          <span style="display: flex; align-items: center; gap: 10px;">
+          <span class="material-symbols-outlined">download</span> 
+          Download CV</span></a>
+      </div>
+
+      
+
+    </div>
+
+    <!-- Contact Channels -->
+    <div class="contact-channels">
+
+      <a
+        href="mailto:kurtallenkinchalos@gmail.com"
+        class="contact-channel magnetic"
+      >
+        <span class="channel-index">01</span>
+
+        <span class="channel-info">
+          <span class="channel-label">EMAIL</span>
+          <span class="channel-value">
+            kurtallenkinchalos@gmail.com
+          </span>
+        </span>
+
+        <span class="material-symbols-outlined">arrows_more_up</span>
+      </a>
+
+      <a
+        href="tel:+639814572805"
+        class="contact-channel magnetic"
+      >
+        <span class="channel-index">02</span>
+
+        <span class="channel-info">
+          <span class="channel-label">PHONE</span>
+          <span class="channel-value">
+            +63-981-457-2805
+          </span>
+        </span>
+
+        <span class="material-symbols-outlined">arrows_more_up</span>
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/kurtallenk"
+        target="_blank"
+        rel="noopener"
+        class="contact-channel magnetic"
+      >
+        <span class="channel-index">03</span>
+
+        <span class="channel-info">
+          <span class="channel-label">LINKEDIN</span>
+          <span class="channel-value">
+            kurtallenk
+          </span>
+        </span>
+
+        <span class="material-symbols-outlined">arrows_more_up</span>
+      </a>
+
+      <a
+        href="https://github.com/kurtallenk"
+        target="_blank"
+        rel="noopener"
+        class="contact-channel magnetic"
+      >
+        <span class="channel-index">04</span>
+
+        <span class="channel-info">
+          <span class="channel-label">GITHUB</span>
+          <span class="channel-value">
+            kurtallenk
+          </span>
+        </span>
+
+        <span class="material-symbols-outlined">arrows_more_up</span>
+      </a>
+
+    </div>
+
+
+  </div>
+
+<!-- =====================================================
+  CONTACT FORM
+  ===================================================== -->
+
+<div class="contact-form-panel" id="transmission_form">
+
+  <div class="contact-form-header">
+
+    <span class="contact-form-label">
+      TRANSMISSION FORM
+    </span>
+
+    <span class="contact-form-ready">
+      <span class="form-ready-dot"></span>
+      READY TO RECEIVE
+    </span>
+
+  </div>
+
+
+  <form
+    id="contactForm"
+    class="contact-form"
+    novalidate
+  >
+
+    <!-- =================================================
+         HONEYPOT
+         ================================================= -->
+
+    <div
+      class="contact-honeypot"
+      aria-hidden="true"
+    >
+
+      <label for="website">
+        Website
+      </label>
+
+      <input
+        type="text"
+        id="website"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <!-- =================================================
+         REQUEST TYPE
+         ================================================= -->
+
+    <div class="contact-field">
+
+      <label for="requestType">
+        REQUEST TYPE
+      </label>
+
+      <div class="contact-select-wrap">
+
+        <select
+          id="requestType"
+          name="requestType"
+          required
+        >
+
+          <option
+            value=""
+            selected
+            disabled
+          >
+            Select a request type
+          </option>
+
+          <option value="Job Offer">
+            Job Offer
+          </option>
+
+          <option value="Freelance Project">
+            Freelance Project
+          </option>
+
+          <option value="Website Development">
+            Website Development
+          </option>
+
+          <option value="Web Application">
+            Web Application
+          </option>
+
+          <option value="3D / Interactive Experience">
+            3D / Interactive Experience
+          </option>
+
+          <option value="Wedding Website">
+            Wedding Website
+          </option>
+
+          <option value="Collaboration">
+            Collaboration
+          </option>
+
+          <option value="Other">
+            Other
+          </option>
+
+        </select>
+
+        <span class="contact-select-arrow">
+          <span class="material-symbols-outlined">arrow_drop_down</span>
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         EMAIL
+         ================================================= -->
+
+    <div class="contact-field">
+
+      <label for="contactEmail">
+        YOUR EMAIL
+      </label>
+
+      <input
+        type="email"
+        id="contactEmail"
+        name="email"
+        placeholder="youremail@company.com"
+        autocomplete="email"
+        maxlength="254"
+        required
+      >
+
+    </div>
+
+
+    <!-- =================================================
+         MESSAGE
+         ================================================= -->
+
+    <div class="contact-field contact-field-message">
+
+      <label for="contactMessage">
+        MESSAGE
+      </label>
+
+      <textarea
+        id="contactMessage"
+        name="message"
+        rows="6"
+        maxlength="5000"
+        placeholder="Tell me about your project, opportunity, or idea..."
+        required
+      ></textarea>
+
+      <div class="contact-message-meta">
+
+        <span>
+          MAX 5000 CHARACTERS
+        </span>
+
+        <span id="messageCounter">
+          0 / 5000
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SUBMIT
+         ================================================= -->
+
+    <button
+      type="submit"
+      class="contact-submit magnetic"
+      id="contactSubmit"
+    >
+
+      <span class="material-symbols-outlined">call_made</span>
+
+      <span class="contact-submit-text">
+        TRANSMIT MESSAGE
+      </span>
+
+      <span class="contact-submit-arrow">
+        <span class="material-symbols-outlined">arrow_right</span>
+      </span>
+
+    </button>
+
+
+    <!-- =================================================
+         STATUS
+         ================================================= -->
+
+    <div
+      id="contactFormStatus"
+      class="contact-form-status-message"
+      aria-live="polite"
+    ></div>
+
+  </form>
+
+</div>
+
+
+<!-- =====================================================
+     FUTURISTIC TRANSMISSION TOAST
+     ===================================================== -->
+
+<div
+  id="transmissionToast"
+  class="transmission-toast"
+  aria-live="assertive"
+  aria-atomic="true"
+>
+
+  <div class="transmission-toast-scan"></div>
+
+  <div class="transmission-toast-icon">
+
+    <span class="toast-icon-core">
+      ✓
+    </span>
+
+  </div>
+
+  <div class="transmission-toast-content">
+
+    <span class="transmission-toast-code">
+      SYSTEM / TRANSMISSION
+    </span>
+
+    <strong class="transmission-toast-title">
+      MESSAGE TRANSMISSION SUCCESSFUL
+    </strong>
+
+    <span class="transmission-toast-description">
+      Your message has been securely transmitted.
+    </span>
+
+  </div>
+
+  <div class="transmission-toast-progress"></div>
+
+</div>
+
+</section>
+
+
+<!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <span>KURT.exe — STATUS: ONLINE</span>
+    <span>© <span id="year"></span> Kurt Allen Kinchalos. Built from scratch.</span>
+  </footer>
+
+</main>
+
+<div class="sr-only" aria-live="polite" id="srLive"></div>
+
+<script type="module" src="/consoleLog.js"></script>
+<script type="module" src="/easterEgg.js?v=20260829"></script>
+<script src="/vTracker.js?v=20260829"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script type="module" src="/cursor.js?v=20260816"></script>
+<script type="module" src="/script.js?v=20260830"></script>
+<script type="module" src="/sendMessage.js?v=20260815"></script>
+
+
+
+</body>
+</html>

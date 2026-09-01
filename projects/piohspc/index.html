@@ -1,0 +1,1251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PIOHSPC | Pacific Institute of Occupational Health & Safety Professional Consultancy</title>
+<meta name="description" content="Pacific Institute of Occupational Health and Safety Professional Consultancy  HSE consulting, training, and audits across the Pacific region." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ==========================================================================
+   PIOHSPC  Corporate Consultancy Redesign
+   Design system: deep navy + professional blue on a cool-white ground,
+   restrained safety-orange accent. Inspection-tag motif carried through
+   fact blocks, service markers and gallery captions.
+   ========================================================================== */
+
+/* ---------- Tokens ---------- */
+:root{
+  --ink:#0E1621;
+  --navy-950:#081428;
+  --navy-900:#0C1F3D;
+  --navy-800:#123057;
+  --navy-700:#1B4270;
+  --blue-600:#2A65A6;
+  --accent:#C2410C;
+  --accent-dark:#9A3410;
+  --paper:#F4F6F8;
+  --surface:#FFFFFF;
+  --line:#E1E5EA;
+  --line-strong:#C9D0DA;
+  --muted:#5C6673;
+  --text:#212B38;
+  --text-soft:#3C4654;
+
+  --ff-display:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --ff-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+
+  --radius-lg:14px;
+  --radius:10px;
+  --radius-sm:6px;
+
+  --shadow-sm:0 1px 2px rgba(14,22,33,.07);
+  --shadow-md:0 10px 26px rgba(14,22,33,.09);
+  --shadow-lg:0 28px 64px rgba(8,14,26,.18);
+
+  --container:1200px;
+  --header-h:84px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+  margin:0;
+  min-height:100%;
+  background:var(--paper);
+  color:var(--text);
+  font-family:var(--ff-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--ff-display);color:var(--ink);margin:0}
+::selection{background:rgba(194,65,12,.16);color:var(--ink)}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 32px}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--accent-dark);
+}
+.eyebrow::before{
+  content:"";
+  width:18px;height:2px;
+  background:var(--accent);
+  display:inline-block;
+}
+
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:48px;
+  padding:0 22px;
+  border-radius:var(--radius-sm);
+  font-family:var(--ff-body);
+  font-weight:600;
+  font-size:14.5px;
+  text-decoration:none;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease,color .18s ease;
+}
+.btn-primary{
+  background:var(--navy-900);
+  color:#fff;
+  box-shadow:var(--shadow-sm);
+}
+.btn-primary:hover{background:var(--navy-800);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.btn-ghost{
+  background:transparent;
+  color:var(--navy-900);
+  border-color:var(--line-strong);
+}
+.btn-ghost:hover{border-color:var(--navy-900);background:rgba(12,31,61,.04)}
+.link-arrow{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-weight:600;
+  color:var(--navy-900);
+  text-decoration:none;
+  border-bottom:1px solid var(--line-strong);
+  padding-bottom:2px;
+  transition:border-color .18s ease,color .18s ease,gap .18s ease;
+}
+.link-arrow:hover{color:var(--accent-dark);border-color:var(--accent)}
+.link-arrow svg{transition:transform .18s ease}
+.link-arrow:hover svg{transform:translateX(3px)}
+
+/* ---------- Inspection tag motif ---------- */
+.tag-row{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:12px 0;
+  border-top:1px solid var(--line);
+}
+.tag-row:first-child{border-top:none;padding-top:0}
+.tag-mark{
+  flex:0 0 auto;
+  width:9px;height:9px;
+  margin-top:6px;
+  border-radius:50%;
+  border:2px solid var(--accent);
+  background:transparent;
+}
+.tag-row .tag-label{
+  display:block;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:2px;
+}
+.tag-row .tag-value{
+  font-weight:600;
+  color:var(--ink);
+  font-size:15px;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px) saturate(140%);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .25s ease;
+}
+.site-header.scrolled{box-shadow:0 6px 24px rgba(14,22,33,.06)}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  min-height:var(--header-h);
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;text-decoration:none}
+.brand .logo{
+  flex:0 0 44px;
+  width:44px;height:44px;
+  border-radius:100%;
+  background:var(--navy-900);
+  display:grid;place-items:center;
+  overflow:hidden;
+}
+.brand .logo img{width:100%;height:100%;object-fit:contain;padding:0}
+.brand-text{min-width:0}
+.brand-text h1{
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:.03em;
+  color:var(--ink);
+  white-space:nowrap;
+}
+.brand-text p{
+  margin:2px 0 0;
+  font-size:10.5px;
+  color:var(--muted);
+  letter-spacing:.02em;
+  max-width:360px;
+  line-height:1.35;
+}
+
+.main-nav{display:flex;align-items:center;gap:22px}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  position:relative;
+  padding:9px 12px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:600;
+  color:var(--text-soft);
+  text-decoration:none;
+  transition:color .18s ease,background .18s ease;
+}
+.nav-links a:hover{color:var(--navy-900);background:rgba(12,31,61,.05)}
+
+.burger{
+  display:none;
+  width:44px;height:44px;
+  border:1px solid var(--line-strong);
+  border-radius:var(--radius-sm);
+  background:#fff;
+  color:var(--navy-900);
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.burger svg{pointer-events:none}
+
+@media (max-width:900px){
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:calc(100% + 1px);
+    left:0;right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:2px;
+    padding:12px;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    box-shadow:var(--shadow-md);
+  }
+  .nav-links.mobile-open{display:flex}
+  .nav-links a{padding:13px 14px;border-radius:8px}
+  .main-nav .btn-primary{display:none}
+  .burger{display:inline-flex}
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero{padding:64px 0 0}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:56px;
+  align-items:center;
+}
+.hero-copy{max-width:600px}
+.hero-copy .eyebrow{margin-bottom:18px}
+.hero-title{
+  font-size:clamp(2.1rem,4vw,3.4rem);
+  line-height:1.12;
+  font-weight:800;
+  letter-spacing:-.015em;
+  color:var(--ink);
+}
+.hero-title em{
+  font-style:normal;
+  color:var(--navy-800);
+  box-shadow:inset 0 -0.32em 0 rgba(194,65,12,.16);
+}
+.hero-subtext{
+  margin:22px 0 0;
+  font-size:16.5px;
+  line-height:1.75;
+  color:var(--text-soft);
+  max-width:52ch;
+}
+.hero-subtext strong{color:var(--ink);font-weight:700}
+.hero-actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:22px;
+  margin-top:34px;
+}
+
+.hero-media{position:relative}
+.hero-frame{
+  position:relative;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  box-shadow:var(--shadow-lg);
+  aspect-ratio:4/5;
+  background:var(--navy-950);
+}
+.hero-frame img{
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:grayscale(28%) contrast(1.06) brightness(.96);
+}
+.hero-frame::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(195deg,rgba(8,20,40,.12) 0%,rgba(8,20,40,.55) 100%);
+  mix-blend-mode:multiply;
+}
+.hero-frame::before{
+  content:"";
+  position:absolute;
+  top:18px;left:18px;
+  width:34px;height:34px;
+  border-left:2px solid rgba(255,255,255,.55);
+  border-top:2px solid rgba(255,255,255,.55);
+  z-index:2;
+}
+.hero-card{
+  position:relative;
+  margin:-64px 22px 0 -22px;
+  margin-left:clamp(-22px,-6vw,-40px);
+  max-width:330px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-lg);
+  padding:22px 22px 8px;
+  z-index:2;
+}
+.hero-card h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.hero-card > p{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.6}
+.hero-card .tag-row{padding:10px 0}
+.hero-card .tag-value{font-size:13.5px}
+
+/* Trust strip */
+.trust-strip{
+  margin-top:78px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--surface);
+}
+.trust-strip .container{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0;
+}
+.trust-item{
+  flex:1 1 220px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:18px 26px 18px;
+  margin-left: 10px;
+  border-right:1px solid var(--line);
+}
+.trust-item:last-child{border-right:none}
+.trust-item .dot{
+  flex:0 0 auto;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent);
+}
+.trust-item span{font-size:13.5px;font-weight:600;color:var(--text-soft)}
+@media (max-width:760px){
+  .trust-item{flex:1 1 46%;border-right:none;border-bottom:1px solid var(--line);padding:16px 0}
+}
+
+/* ==========================================================================
+   SECTIONS  shared
+   ========================================================================== */
+.site-section{padding:108px 0}
+.section-head{max-width:680px;margin-bottom:48px}
+.section-head h2{
+  margin-top:14px;
+  font-size:clamp(1.7rem,3vw,2.35rem);
+  font-weight:800;
+  letter-spacing:-.015em;
+}
+.section-head p{margin-top:14px;color:var(--muted);font-size:15.5px;line-height:1.7}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in-view{opacity:1;transform:none}
+
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+.about-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:64px;
+  align-items:start;
+}
+.about-copy p{
+  font-size:16px;
+  line-height:1.85;
+  color:var(--text-soft);
+  margin:0 0 18px;
+}
+.about-copy p:last-child{margin-bottom:0}
+.about-facts{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:8px 24px;
+  box-shadow:var(--shadow-sm);
+}
+
+/* ==========================================================================
+   SERVICES
+   ========================================================================== */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.service-card{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--line-strong)}
+.service-media{position:relative;aspect-ratio:16/11;overflow:hidden;background:var(--navy-950)}
+.service-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) contrast(1.04);transition:transform .5s ease}
+.service-card:hover .service-media img{transform:scale(1.04)}
+.service-index{
+  position:absolute;
+  top:12px;left:12px;
+  font-family:var(--ff-display);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.05em;
+  color:#fff;
+  background:rgba(8,20,40,.72);
+  backdrop-filter:blur(4px);
+  padding:5px 9px;
+  border-radius:4px;
+}
+.service-body{padding:22px 22px 26px}
+.service-body h3{font-size:18px;font-weight:800;margin-bottom:9px}
+.service-body p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.7}
+
+/* ==========================================================================
+   GALLERY
+   ========================================================================== */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.gallery-item{
+  position:relative;
+  border-radius:var(--radius);
+  overflow:hidden;
+  aspect-ratio:4/5;
+  background:var(--navy-950);
+  border:1px solid var(--line);
+  cursor:pointer;
+  box-shadow:var(--shadow-sm);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.gallery-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(15%) contrast(1.05);
+  transition:transform .5s ease,filter .5s ease;
+}
+.gallery-item:hover img{transform:scale(1.05);filter:grayscale(0%) contrast(1.05)}
+.gallery-caption{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:36px 18px 16px;
+  background:linear-gradient(0deg,rgba(6,14,26,.86) 0%,rgba(6,14,26,0) 100%);
+  color:#fff;
+}
+.gallery-caption h3{color:#fff;font-size:15.5px;font-weight:700;margin-bottom:4px}
+.gallery-caption p{margin:0;font-size:12.5px;color:rgba(255,255,255,.78);line-height:1.55}
+.gallery-view{
+  position:absolute;top:12px;right:12px;
+  font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  color:#fff;
+  background:rgba(194,65,12,.92);
+  padding:6px 9px;border-radius:4px;
+  opacity:0;transform:translateY(-4px);
+  transition:opacity .2s ease,transform .2s ease;
+}
+.gallery-item:hover .gallery-view{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .services-grid,.gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:600px){
+  .services-grid,.gallery-grid{grid-template-columns:1fr}
+}
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact-section{
+  background:var(--navy-950);
+  padding:104px 0 96px;
+  color:#fff;
+}
+.contact-section .eyebrow{color:#F0A374}
+.contact-section .section-head h2{color:#fff}
+.contact-section .section-head p{color:rgba(226,234,244,.68)}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,.72fr);
+  gap:28px;
+  align-items:start;
+}
+.contact-form{
+  background:var(--surface);
+  border-radius:var(--radius-lg);
+  padding:34px;
+  box-shadow:var(--shadow-lg);
+}
+.field{margin-top:18px}
+.field:first-child{margin-top:0}
+.field label{
+  display:block;
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:7px;
+}
+.field input,.field textarea{
+  width:100%;
+  padding:13px 14px;
+  border:1px solid var(--line-strong);
+  border-radius:var(--radius-sm);
+  background:#fff;
+  color:var(--ink);
+  font:inherit;
+  font-size:15px;
+  outline:none;
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+.field textarea{min-height:130px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:#9AA5B1}
+.field input:focus,.field textarea:focus{
+  border-color:var(--navy-700);
+  box-shadow:0 0 0 3px rgba(27,66,112,.12);
+}
+.contact-form .btn{width:100%;margin-top:20px}
+#formStatus{margin-top:12px;min-height:18px;color:var(--muted);font-size:13.5px}
+
+.office-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+.office-media{aspect-ratio:16/10;overflow:hidden;background:var(--navy-900)}
+.office-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(25%) contrast(1.05) brightness(.92)}
+.office-body{padding:24px 24px 26px}
+.office-body h3{color:#fff;font-size:16px;font-weight:700;margin-bottom:8px}
+.office-body p{margin:0 0 14px;color:rgba(226,234,244,.68);font-size:14px;line-height:1.65}
+.office-body .tag-row{border-top-color:rgba(255,255,255,.14)}
+.office-body .tag-label{color:rgba(226,234,244,.5)}
+.office-body .tag-value{color:#fff;font-size:14.5px}
+.office-body .tag-value a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+.office-body .tag-value a:hover{border-color:#fff}
+
+@media (max-width:900px){
+  .contact-grid{grid-template-columns:1fr}
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer{
+  background:var(--navy-950);
+  border-top:1px solid rgba(255,255,255,.1);
+  padding:40px 0 34px;
+}
+.footer-inner{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.footer-brand{display:flex;align-items:center;gap:10px}
+.footer-brand .logo{
+  width:32px;height:32px;border-radius:7px;
+  background:rgba(255,255,255,.08);
+  display:grid;place-items:center;overflow:hidden;
+}
+.footer-brand .logo img{width:100%;height:100%;object-fit:contain;padding:4px}
+.footer-brand span{font-size:12.5px;font-weight:700;color:#fff;letter-spacing:.03em}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:13.5px;color:rgba(226,234,244,.62);text-decoration:none}
+.footer-links a:hover{color:#fff}
+.footer-meta{font-size:12.5px;color:rgba(226,234,244,.42)}
+
+/* ==========================================================================
+   FLOATING CTA
+   ========================================================================== */
+.floating-cta{
+  position:fixed;
+  right:22px;bottom:22px;
+  z-index:40;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:13px 18px;
+  border-radius:999px;
+  background:var(--navy-900);
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:var(--shadow-lg);
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.floating-cta:hover{background:var(--navy-800);transform:translateY(-2px)}
+.floating-cta .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+
+/* ==========================================================================
+   LIGHTBOX
+   ========================================================================== */
+.lightbox{
+  position:fixed;inset:0;
+  background:rgba(6,12,22,.92);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:center;justify-content:center;
+  padding:24px;
+  z-index:80;
+}
+.lightbox.active{display:flex}
+.lb-inner{width:min(1080px,94vw);display:flex;flex-direction:column;gap:16px;align-items:center;position:relative}
+.lb-img{max-width:100%;max-height:76vh;border-radius:var(--radius);box-shadow:var(--shadow-lg)}
+.lb-row{display:flex;gap:16px;align-items:center;justify-content:center}
+.lb-controls button{
+  width:44px;height:44px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--radius-sm);
+  background:rgba(255,255,255,.06);
+  color:#fff;font-size:18px;cursor:pointer;
+  transition:background .18s ease,border-color .18s ease;
+}
+.lb-controls button:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4)}
+.lb-close{
+  position:absolute;top:-52px;right:0;
+  width:40px;height:40px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--radius-sm);
+  background:rgba(255,255,255,.06);
+  color:#fff;font-size:16px;cursor:pointer;
+}
+#lbTitle{color:rgba(226,234,244,.75);font-size:13.5px}
+
+/* ---------- Accessibility ---------- */
+a:focus-visible,
+button:focus-visible,
+.gallery-item:focus-visible,
+input:focus-visible,
+textarea:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width:1180px){
+  .container{padding:0 26px}
+  .hero-grid{gap:40px}
+}
+
+@media (max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:52px}
+  .hero-media{max-width:520px}
+  .hero-card{margin-left:0;margin-top:-56px}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+}
+
+@media (max-width:900px){
+  .site-section{padding:84px 0}
+}
+
+@media (max-width:700px){
+  .container{padding:0 18px}
+  .hero{padding:44px 0 0}
+  .hero-title{font-size:clamp(2rem,8vw,2.6rem)}
+  .hero-card{max-width:none;padding:20px 20px 6px}
+  .site-section{padding:68px 0}
+  .section-head{margin-bottom:34px}
+  .contact-section{padding:72px 0 64px}
+}
+
+@media (max-width:560px){
+  .brand-text p{display:none}
+  .hero-actions{gap:16px}
+  .service-body,.office-body{padding:18px}
+  .contact-form{padding:22px}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+}
+
+@media (max-width:400px){
+  .hero-title{font-size:1.85rem}
+  .header-inner{min-height:64px}
+  .brand .logo{flex-basis:38px;width:38px;height:38px}
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
+  }
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="#top">
+      <span class="logo" aria-hidden="true"><img src="Logo_Only.png" alt=""></span>
+      <span class="brand-text">
+        <h1>PIOHSPC</h1>
+        <p>Pacific Institute of Occupational Health &amp; Safety Professional Consultancy</p>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="Primary">
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 1H18" stroke="currentColor" stroke-width="2"/>
+          <path d="M0 7H18" stroke="currentColor" stroke-width="2"/>
+          <path d="M0 13H18" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Occupational Health &amp; Safety Consultancy  Pacific Region</span>
+        <h2 class="hero-title">
+          Keeping workplaces safe through <em>practical</em>, <em>modern</em> occupational health &amp; safety.
+        </h2>
+        <p class="hero-subtext">
+          We provide HSE consulting, training, and compliance services across the Pacific region.
+          Our mission is to help organizations create safer, more productive working environments
+          through <strong>modern solutions</strong> and <strong>global best practices</strong>.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Request a Consultation</a>
+          <a class="link-arrow" href="#projects">
+            View our work
+            <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 1L14 5.5L9 10" stroke="currentColor" stroke-width="1.6"/><path d="M14 5.5H0" stroke="currentColor" stroke-width="1.6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-frame">
+          <img src="Hero.avif" alt="PIOHSPC safety consultants reviewing a workplace assessment">
+        </div>
+        <aside class="hero-card" aria-labelledby="company-overview">
+          <h3 id="company-overview">Company Overview</h3>
+          <p>Tailored HSE solutions  audits, management systems, training, and incident response.</p>
+          <div class="tag-row">
+            <span class="tag-mark" aria-hidden="true"></span>
+            <span>
+              <span class="tag-label">Coverage</span>
+              <span class="tag-value">Pacific Region</span>
+            </span>
+          </div>
+          <div class="tag-row">
+            <span class="tag-mark" aria-hidden="true"></span>
+            <span>
+              <span class="tag-label">Established</span>
+              <span class="tag-value">2016</span>
+            </span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="container">
+      <div class="trust-item"><span class="dot" aria-hidden="true"></span><span>Established 2016</span></div>
+      <div class="trust-item"><span class="dot" aria-hidden="true"></span><span>Pacific Region coverage</span></div>
+      <div class="trust-item"><span class="dot" aria-hidden="true"></span><span>ISO-aligned practices</span></div>
+      <div class="trust-item"><span class="dot" aria-hidden="true"></span><span>Risk assessment &amp; audits</span></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="site-section">
+    <div class="container about-grid">
+      <div class="reveal">
+        <span class="eyebrow">About PIOHSPC</span>
+        <h2 class="section-head" style="margin-bottom:0">Established occupational health and safety expertise across the Pacific.</h2>
+        <div class="about-copy" style="margin-top:26px">
+          <p>
+            The Pacific Institute of Occupational Health &amp; Safety Professional Consultancy provides
+            HSE consulting, training, and compliance services to organizations across the Pacific region.
+            Since 2016, our work has centered on one goal: helping organizations build safer, more
+            productive working environments.
+          </p>
+          <p>
+            We do this through modern solutions and global best practices  combining hands-on audits and
+            management systems work with practical training and responsive incident support, so that safety
+            programs hold up in the field, not just on paper.
+          </p>
+        </div>
+      </div>
+
+      <aside class="about-facts reveal">
+        <div class="tag-row">
+          <span class="tag-mark" aria-hidden="true"></span>
+          <span>
+            <span class="tag-label">Coverage</span>
+            <span class="tag-value">Pacific Region</span>
+          </span>
+        </div>
+        <div class="tag-row">
+          <span class="tag-mark" aria-hidden="true"></span>
+          <span>
+            <span class="tag-label">Established</span>
+            <span class="tag-value">2016</span>
+          </span>
+        </div>
+        <div class="tag-row">
+          <span class="tag-mark" aria-hidden="true"></span>
+          <span>
+            <span class="tag-label">Focus areas</span>
+            <span class="tag-value">Consulting · Training · Audits</span>
+          </span>
+        </div>
+        <div class="tag-row">
+          <span class="tag-mark" aria-hidden="true"></span>
+          <span>
+            <span class="tag-label">Standards</span>
+            <span class="tag-value">ISO-aligned practices</span>
+          </span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="site-section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">What we do</span>
+        <h2>Our Services</h2>
+        <p>Consulting, training, and audit programs built around the realities of your worksite.</p>
+      </div>
+
+      <div class="services-grid" role="list">
+        <article class="service-card reveal" role="listitem">
+          <div class="service-media">
+            <span class="service-index">S–01</span>
+            <img src="Consult.jpg" alt="" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Consulting</h3>
+            <p>Policy development, compliance gap analysis, and incident investigation.</p>
+          </div>
+        </article>
+
+        <article class="service-card reveal" role="listitem">
+          <div class="service-media">
+            <span class="service-index">S–02</span>
+            <img src="Training.jpg" alt="" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Training</h3>
+            <p>Practical workshops, toolbox talks, and certification preparation.</p>
+          </div>
+        </article>
+
+        <article class="service-card reveal" role="listitem">
+          <div class="service-media">
+            <span class="service-index">S–03</span>
+            <img src="Services.jpg" alt="" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Audits</h3>
+            <p>Systematic inspection and evaluation to ensure occupational health and safety compliance.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="projects" class="site-section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Selected work</span>
+        <h2>Gallery</h2>
+        <p>Selected images from training sessions, workshops, and on-site inspections.</p>
+      </div>
+
+      <div class="gallery-grid" id="projectsGrid">
+        <article class="gallery-item reveal" data-img="gallery/21_tn.jpg" tabindex="0" role="button" aria-pressed="false" aria-label="Open image: Training Session">
+          <img src="21.jpg" alt="Training session with instructor and participants" loading="lazy">
+          <span class="gallery-view">View</span>
+          <div class="gallery-caption">
+            <h3>Training Session</h3>
+            <p>Professional health and safety training programs for corporate teams.</p>
+          </div>
+        </article>
+
+        <article class="gallery-item reveal" data-img="gallery/7_tn.jpg" tabindex="0" role="button" aria-pressed="false" aria-label="Open image: Safety Workshop">
+          <img src="7.jpg" alt="Safety workshop group exercise" loading="lazy">
+          <span class="gallery-view">View</span>
+          <div class="gallery-caption">
+            <h3>Safety Workshop</h3>
+            <p>Hands-on workshops to enhance awareness and application of safety principles.</p>
+          </div>
+        </article>
+
+        <article class="gallery-item reveal" data-img="gallery/13_tn.jpg" tabindex="0" role="button" aria-pressed="false" aria-label="Open image: On-site Inspection">
+          <img src="13.jpg" alt="On-site inspection of equipment" loading="lazy">
+          <span class="gallery-view">View</span>
+          <div class="gallery-caption">
+            <h3>On-site Inspection</h3>
+            <p>Regular inspection and safety monitoring for compliance assurance.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Contact &amp; Bookings</h2>
+        <p>Reach out for audits, training, or consultancy services.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="reveal">
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="field">
+              <label for="name">Full name</label>
+              <input required id="name" name="name" placeholder="Enter full name" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input required id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea required id="message" name="message" rows="4" placeholder="Tell us about your needs"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send message</button>
+            <div id="formStatus" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <aside class="office-card reveal" aria-labelledby="office">
+          <div class="office-media">
+            <img src="18_tn.jpg" alt="">
+          </div>
+          <div class="office-body">
+            <h3 id="office">Office</h3>
+            <p>Pacific HQ  remote &amp; onsite engagements across the region.</p>
+            <div class="tag-row">
+              <span class="tag-mark" aria-hidden="true"></span>
+              <span>
+                <span class="tag-label">Email</span>
+                <span class="tag-value"><a href="mailto:info@piohspc.com">info@piohspc.com</a></span>
+              </span>
+            </div>
+            <div class="tag-row">
+              <span class="tag-mark" aria-hidden="true"></span>
+              <span>
+                <span class="tag-label">Phone</span>
+                <span class="tag-value"><a href="tel:+639123456789">+63 912 345 6789</a></span>
+              </span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo" aria-hidden="true"><img src="Logo_Only.png" alt=""></span>
+      <span>PIOHSPC</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-meta">© 2016–2026 Pacific Institute of Occupational Health &amp; Safety Professional Consultancy</div>
+  </div>
+</footer>
+
+<a class="floating-cta" href="#contact" aria-label="Request a consultation">
+  <span class="dot" aria-hidden="true"></span>
+  Request a Consultation
+</a>
+
+<!-- Lightbox markup -->
+<div class="lightbox" id="lightbox" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="lbTitle">
+  <div class="lb-inner" role="document">
+    <button class="lb-close" id="lbClose" aria-label="Close preview">✕</button>
+    <img class="lb-img" id="lbImg" src="" alt="Preview image">
+    <div class="lb-row">
+      <div class="lb-controls"><button id="lbPrev" aria-label="Previous image">◀</button></div>
+      <div id="lbTitle" class="small"></div>
+      <div class="lb-controls"><button id="lbNext" aria-label="Next image">▶</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* Sticky header shadow on scroll */
+  const siteHeader = document.getElementById('siteHeader');
+  const onScroll = () => siteHeader.classList.toggle('scrolled', window.scrollY > 8);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Mobile nav toggle */
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const expanded = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!expanded));
+    navLinks.classList.toggle('mobile-open', !expanded);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 900 &&
+        navLinks.classList.contains('mobile-open') &&
+        !navLinks.contains(e.target) &&
+        !burger.contains(e.target)) {
+      navLinks.classList.remove('mobile-open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* Smooth scroll for internal links + close mobile nav */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href && href.length > 1) {
+        const el = document.querySelector(href);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (window.innerWidth <= 900) {
+            navLinks.classList.remove('mobile-open');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      }
+    });
+  });
+
+  /* Gallery lightbox */
+  const projects = Array.from(document.querySelectorAll('.gallery-item'));
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  const lbTitle = document.getElementById('lbTitle');
+
+  const gallery = projects.map(p => ({
+    img: p.dataset.img,
+    title: p.querySelector('h3') ? p.querySelector('h3').textContent.trim() : ''
+  }));
+
+  let current = 0;
+
+  function openLightbox(i) {
+    current = i;
+    lbImg.src = gallery[current].img;
+    lbImg.alt = gallery[current].title || 'Gallery preview';
+    lbTitle.textContent = gallery[current].title || '';
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    const card = projects[current];
+    if (card) card.focus();
+  }
+
+  projects.forEach((p, i) => {
+    p.addEventListener('click', () => openLightbox(i));
+    p.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(i);
+      }
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  lbPrev.addEventListener('click', () => {
+    current = (current - 1 + gallery.length) % gallery.length;
+    openLightbox(current);
+  });
+  lbNext.addEventListener('click', () => {
+    current = (current + 1) % gallery.length;
+    openLightbox(current);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') lbPrev.click();
+    if (e.key === 'ArrowRight') lbNext.click();
+    if (e.key === 'Escape') lbClose.click();
+  });
+
+  /* Touch swipe support for lightbox image */
+  let startX = 0;
+  lbImg.addEventListener('touchstart', (e) => {
+    startX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lbImg.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) lbNext.click();
+      else lbPrev.click();
+    }
+  });
+
+  /* Focus trap inside lightbox when open */
+  document.addEventListener('focus', function handleFocus(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (!lightbox.contains(e.target)) {
+      e.stopPropagation();
+      lbClose.focus();
+    }
+  }, true);
+
+  /* Contact form (demo: no external network) */
+  const form = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if (!name || !email || !message) {
+      formStatus.textContent = 'Please complete all fields.';
+      return;
+    }
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!re.test(email)) {
+      formStatus.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    formStatus.textContent = 'Sending...';
+    setTimeout(() => {
+      formStatus.textContent = 'Message sent  thank you! We will reply within 48 hours.';
+      form.reset();
+    }, 800);
+  });
+
+  /* Image fallback: hide broken images, note unavailability */
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+      const card = img.closest('.gallery-item, .service-card');
+      const meta = card ? card.querySelector('.gallery-caption, .service-body') : null;
+      if (meta && !meta.querySelector('.img-fallback-note')) {
+        const notice = document.createElement('p');
+        notice.className = 'img-fallback-note';
+        notice.textContent = 'Image unavailable';
+        meta.prepend(notice);
+      }
+    });
+  });
+
+  /* Subtle reveal-on-scroll for sections (skipped for reduced-motion users) */
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('in-view'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  }
+</script>
+</body>
+</html>

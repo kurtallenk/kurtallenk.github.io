@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TriniTrends | Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=Caveat:wght@500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,0&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<link rel="stylesheet" href="shop.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Trini<span>Trends</span></a>
+    <div class="nav-actions">
+      <button class="icon-btn" id="cartBtn" aria-label="Cart"><span class="material-symbols-outlined">shopping_bag</span><span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-head">
+    <h1>Shop All</h1>
+    <p>Browse everything TriniTrends has in stock right now.</p>
+  </div>
+
+  <div class="controls">
+    <div class="search-row">
+      <div class="search-box">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" id="searchInput" placeholder="Search products...">
+      </div>
+      <select class="sort-select" id="sortSelect">
+        <option value="featured">Featured</option>
+        <option value="newest">Newest</option>
+        <option value="popular">Popular</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+      </select>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="results-bar"><span id="resultsCount">Loading products...</span></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <span class="material-symbols-outlined">search_off</span>
+    <div><strong>No products found</strong></div>
+    <p>Try a different search term or category.</p>
+  </div>
+</div>
+
+<div class="mobile-bar">
+  <a href="index.html"><span class="material-symbols-outlined">home</span>Home</a>
+  <a href="shop.html" class="active"><span class="material-symbols-outlined">search</span>Search</a>
+  <a href="#" id="mobileCart"><span class="material-symbols-outlined">shopping_bag</span>Cart</a>
+  <a href="#"><span class="material-symbols-outlined">menu</span>Menu</a>
+</div>
+
+<!-- Product modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal"></div>
+</div>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head"><h3>Your Cart</h3><button class="cart-close" id="cartClose"><span class="material-symbols-outlined">close</span></button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none;">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">₱0</span></div>
+    <button class="checkout-btn" onclick="location.href='checkout.html'">Proceed to Checkout</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="material-symbols-outlined">check_circle</span>Added to cart!</div>
+
+<script>
+const products = [
+  {id:'p1', name:'Sunset Wrap Top', cat:'Tops', price:549, stock:8, badge:'New', featured:true, views:120, orders:14, created:9, img:'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=70', gallery:['https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=70','https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=70'], desc:'A breezy wrap top in a warm sunset hue — soft, breathable cotton blend that layers easily and moves with you all day.'},
+  {id:'p2', name:'Woven Tote Bag', cat:'Bags', price:620, stock:5, badge:null, featured:true, views:98, orders:22, created:20, img:'https://images.unsplash.com/photo-1591561954557-26941169b49e?w=600&q=70', gallery:['https://images.unsplash.com/photo-1591561954557-26941169b49e?w=600&q=70'], desc:'Hand-woven tote with reinforced straps — roomy enough for everyday errands, sturdy enough to last.'},
+  {id:'p3', name:'Terracotta Hoops', cat:'Accessories', price:210, stock:14, badge:'Popular', featured:true, views:210, orders:40, created:30, img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=70', gallery:['https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=70'], desc:'Lightweight statement hoops in a warm terracotta finish. Hypoallergenic posts.'},
+  {id:'p4', name:'Linen Wide Pants', cat:'Bottoms', price:780, stock:0, badge:null, featured:true, views:75, orders:10, created:15, img:'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&q=70', gallery:['https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&q=70'], desc:'Wide-leg linen pants with an elastic waist — effortless, cool, and perfect for humid days.'},
+  {id:'p5', name:'Rose Clay Mug', cat:'Home', price:320, stock:11, badge:'Trending', featured:false, views:180, orders:33, created:5, img:'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&q=70', gallery:['https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&q=70'], desc:'A hand-thrown ceramic mug in warm clay tones — holds 300ml, microwave safe.'},
+  {id:'p6', name:'Boho Layer Necklace', cat:'Accessories', price:280, stock:9, badge:null, featured:false, views:65, orders:12, created:25, img:'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&q=70', gallery:['https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&q=70'], desc:'A triple-layer necklace with mixed pendants — pairs well with almost anything in the closet.'},
+  {id:'p7', name:'Cream Knit Cardigan', cat:'Tops', price:890, stock:6, badge:'Trending', featured:false, views:250, orders:45, created:2, img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=70', gallery:['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=70'], desc:'A soft chunky-knit cardigan in cream — an easy throw-on layer for cooler evenings.'},
+  {id:'p8', name:'Mini Crossbody', cat:'Bags', price:460, stock:7, badge:null, featured:false, views:88, orders:18, created:12, img:'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=70', gallery:['https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=70'], desc:'A compact crossbody with an adjustable strap — fits your phone, cards, and essentials.'},
+  {id:'p9', name:'Denim Button Skirt', cat:'Bottoms', price:610, stock:4, badge:null, featured:false, views:54, orders:9, created:18, img:'https://images.unsplash.com/photo-1583496661160-fb5886a13d14?w=600&q=70', gallery:['https://images.unsplash.com/photo-1583496661160-fb5886a13d14?w=600&q=70'], desc:'A classic button-front denim skirt with a comfortable stretch fit.'},
+  {id:'p10', name:'Woven Placemat Set', cat:'Home', price:390, stock:13, badge:'New', featured:false, views:40, orders:6, created:1, img:'https://images.unsplash.com/photo-1600166898405-da9535204843?w=600&q=70', gallery:['https://images.unsplash.com/photo-1600166898405-da9535204843?w=600&q=70'], desc:'A set of 4 hand-woven placemats to warm up any table setting.'},
+  {id:'p11', name:'Suede Slide Sandals', cat:'Footwear', price:540, stock:10, badge:null, featured:false, views:70, orders:15, created:22, img:'https://images.unsplash.com/photo-1603487742131-4160ec999306?w=600&q=70', gallery:['https://images.unsplash.com/photo-1603487742131-4160ec999306?w=600&q=70'], desc:'Soft suede slide sandals with a cushioned footbed — comfortable enough for all-day wear.'},
+  {id:'p12', name:'Braided Belt', cat:'Accessories', price:190, stock:16, badge:null, featured:false, views:35, orders:7, created:28, img:'https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=70', gallery:['https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=70'], desc:'A hand-braided leather belt that adds texture to any outfit.'},
+];
+const categories = ['All', 'Tops', 'Bottoms', 'Bags', 'Accessories', 'Home', 'Footwear'];
+let activeCat = 'All';
+let sortMode = 'featured';
+let searchTerm = '';
+
+// read query params (?cat=, ?product=, ?sort=)
+const params = new URLSearchParams(location.search);
+if(params.get('cat')) activeCat = params.get('cat');
+if(params.get('sort') === 'trending') sortMode = 'popular';
+
+document.getElementById('chips').innerHTML = categories.map(c =>
+  `<button class="chip ${c===activeCat?'active':''}" data-cat="${c}">${c}</button>`
+).join('');
+document.getElementById('sortSelect').value = sortMode;
+
+function filteredProducts(){
+  let list = products.filter(p => activeCat === 'All' || p.cat === activeCat);
+  if(searchTerm){
+    const t = searchTerm.toLowerCase();
+    list = list.filter(p => p.name.toLowerCase().includes(t) || p.cat.toLowerCase().includes(t));
+  }
+  switch(sortMode){
+    case 'newest': list.sort((a,b)=>a.created-b.created); break;
+    case 'popular': list.sort((a,b)=>b.views-a.views); break;
+    case 'price-low': list.sort((a,b)=>a.price-b.price); break;
+    case 'price-high': list.sort((a,b)=>b.price-a.price); break;
+    default: list.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
+  }
+  return list;
+}
+
+function cardHTML(p){
+  const soldOut = p.stock === 0;
+  return `<div class="card" onclick="openProduct('${p.id}')">
+    <div class="card-media">
+      ${soldOut ? `<span class="out-badge">Sold Out</span>` : (p.badge ? `<span class="badge">${p.badge}</span>` : '')}
+      <button class="fav-btn" onclick="event.stopPropagation()" aria-label="Save"><span class="material-symbols-outlined">favorite</span></button>
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-cat">${p.cat}</div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-footer">
+        <span class="card-price">₱${p.price}</span>
+        <button class="add-btn" ${soldOut?'disabled':''} onclick="event.stopPropagation(); ${soldOut?'':`addToCart('${p.id}', this)`}"><span class="material-symbols-outlined">add</span></button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderGrid(){
+  const grid = document.getElementById('grid');
+  const list = filteredProducts();
+  document.getElementById('resultsCount').textContent = `${list.length} product${list.length!==1?'s':''}`;
+  grid.style.display = list.length ? 'grid' : 'none';
+  document.getElementById('emptyState').style.display = list.length ? 'none' : 'block';
+  grid.innerHTML = list.map(cardHTML).join('');
+  gsap.from('#grid .card', {y:20, opacity:0, duration:0.45, stagger:0.04, ease:'power2.out'});
+}
+
+// initial skeleton, then render (simulating a brief load)
+document.getElementById('grid').innerHTML = Array(8).fill('<div class="skeleton"></div>').join('');
+setTimeout(renderGrid, 350);
+
+document.getElementById('chips').addEventListener('click', e=>{
+  const btn = e.target.closest('.chip');
+  if(!btn) return;
+  activeCat = btn.dataset.cat;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active', c===btn));
+  renderGrid();
+});
+document.getElementById('sortSelect').addEventListener('change', e=>{ sortMode = e.target.value; renderGrid(); });
+let searchDebounce;
+document.getElementById('searchInput').addEventListener('input', e=>{
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(()=>{ searchTerm = e.target.value; renderGrid(); }, 250);
+});
+
+/* ---- Product modal ---- */
+let modalQty = 1;
+function openProduct(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  modalQty = 1;
+  const related = products.filter(x=>x.cat===p.cat && x.id!==p.id).slice(0,4);
+  document.getElementById('modal').innerHTML = `
+    <div class="modal-grid">
+      <div class="modal-gallery">
+        <button class="modal-close" onclick="closeProduct()"><span class="material-symbols-outlined">close</span></button>
+        <img class="modal-main-img" id="modalMainImg" src="${p.gallery[0]}">
+        ${p.gallery.length>1 ? `<div class="modal-thumbs">${p.gallery.map((g,i)=>`<img src="${g}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${g}'; document.querySelectorAll('.modal-thumbs img').forEach(t=>t.classList.remove('active')); this.classList.add('active');">`).join('')}</div>` : ''}
+      </div>
+      <div class="modal-info">
+        <div class="modal-cat">${p.cat}</div>
+        <h2>${p.name}</h2>
+        <div class="modal-price">₱${p.price}</div>
+        <p class="modal-desc">${p.desc}</p>
+        <div class="modal-meta">
+          <span><span class="material-symbols-outlined">visibility</span>${p.views} views</span>
+          <span><span class="material-symbols-outlined">${p.stock>0?'inventory_2':'block'}</span>${p.stock>0? p.stock+' in stock' : 'Sold out'}</span>
+        </div>
+        <div class="qty-row">
+          <div class="qty-control-lg">
+            <button onclick="modalQty=Math.max(1,modalQty-1); document.getElementById('modalQtyVal').textContent=modalQty;"><span class="material-symbols-outlined" style="font-size:16px;">remove</span></button>
+            <span id="modalQtyVal">1</span>
+            <button onclick="modalQty=Math.min(${p.stock||1},modalQty+1); document.getElementById('modalQtyVal').textContent=modalQty;"><span class="material-symbols-outlined" style="font-size:16px;">add</span></button>
+          </div>
+        </div>
+        <button class="modal-add" ${p.stock===0?'disabled':''} onclick="addToCartQty('${p.id}', modalQty)">${p.stock===0?'Sold Out':'Add to Cart'}</button>
+        ${related.length ? `<div class="related-head">You might also like</div><div class="related-row">${related.map(r=>`<div class="related-item" onclick="openProduct('${r.id}')"><img src="${r.img}"><div class="rn">${r.name}</div><div class="rp">₱${r.price}</div></div>`).join('')}</div>` : ''}
+      </div>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+  history.replaceState(null, '', `?product=${id}`);
+}
+function closeProduct(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  history.replaceState(null, '', location.pathname);
+}
+document.getElementById('modalOverlay').addEventListener('click', e=>{ if(e.target.id==='modalOverlay') closeProduct(); });
+if(params.get('product')) setTimeout(()=>openProduct(params.get('product')), 400);
+
+/* ---- Cart (shared via localStorage) ---- */
+function getCart(){ return JSON.parse(localStorage.getItem('tt_cart') || '[]'); }
+function saveCart(cart){ localStorage.setItem('tt_cart', JSON.stringify(cart)); renderCartDrawer(); }
+function addToCart(id, btnEl){ addToCartQty(id, 1, btnEl); }
+function addToCartQty(id, qty, btnEl){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  const cart = getCart();
+  const existing = cart.find(i=>i.id===id);
+  if(existing){ existing.qty += qty; } else { cart.push({id:p.id, name:p.name, price:p.price, img:p.img, qty}); }
+  saveCart(cart);
+  if(btnEl) flyToCart(btnEl);
+  showToast();
+  closeProduct();
+}
+function changeQty(id, delta){
+  const cart = getCart();
+  const item = cart.find(i=>i.id===id);
+  if(!item) return;
+  item.qty += delta;
+  saveCart(item.qty <= 0 ? cart.filter(i=>i.id!==id) : cart);
+}
+function renderCartDrawer(){
+  const cart = getCart();
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  document.querySelectorAll('#cartCount').forEach(el=>el.textContent = count);
+  const itemsEl = document.getElementById('cartItems');
+  const footEl = document.getElementById('cartFoot');
+  if(cart.length === 0){
+    itemsEl.innerHTML = `<div class="cart-empty"><span class="material-symbols-outlined">shopping_bag</span><div>Your cart is empty</div></div>`;
+    footEl.style.display = 'none';
+    return;
+  }
+  itemsEl.innerHTML = cart.map(i => `
+    <div class="cart-row">
+      <img src="${i.img}" class="cart-thumb">
+      <div class="cart-info"><div class="name">${i.name}</div><div class="price">₱${i.price} × ${i.qty}</div></div>
+      <div class="qty-control">
+        <button onclick="changeQty('${i.id}', -1)"><span class="material-symbols-outlined" style="font-size:14px;">remove</span></button>
+        <span>${i.qty}</span>
+        <button onclick="changeQty('${i.id}', 1)"><span class="material-symbols-outlined" style="font-size:14px;">add</span></button>
+      </div>
+    </div>`).join('');
+  document.getElementById('cartSubtotal').textContent = `₱${cart.reduce((s,i)=>s+i.price*i.qty,0)}`;
+  footEl.style.display = 'block';
+}
+function flyToCart(btn){
+  const cartTarget = document.getElementById('cartBtn');
+  const rect = btn.getBoundingClientRect();
+  const targetRect = cartTarget.getBoundingClientRect();
+  const flyer = document.createElement('div');
+  flyer.style.cssText = `position:fixed;left:${rect.left}px;top:${rect.top}px;width:14px;height:14px;border-radius:50%;background:#B5707A;z-index:500;pointer-events:none;`;
+  document.body.appendChild(flyer);
+  gsap.to(flyer, {left: targetRect.left + 10, top: targetRect.top + 10, scale: 0.3, duration: 0.6, ease: 'power2.in', onComplete: () => flyer.remove()});
+  gsap.fromTo(cartTarget, {scale:1}, {scale:1.25, duration:0.15, yoyo:true, repeat:1, ease:'power1.inOut', delay:0.55});
+}
+function showToast(){
+  const toast = document.getElementById('toast');
+  gsap.to(toast, {opacity:1, y:0, duration:0.3, ease:'power2.out'});
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=> gsap.to(toast, {opacity:0, y:20, duration:0.3}), 1600);
+}
+function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('overlay').classList.add('open'); }
+function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
+document.getElementById('cartBtn').addEventListener('click', openCart);
+document.getElementById('mobileCart').addEventListener('click', e=>{e.preventDefault(); openCart();});
+document.getElementById('cartClose').addEventListener('click', closeCart);
+document.getElementById('overlay').addEventListener('click', closeCart);
+renderCartDrawer();
+</script>
+</body>
+</html>
